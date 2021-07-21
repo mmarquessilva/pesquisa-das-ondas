@@ -1,0 +1,37 @@
+@font-face {
+    font-family: 'Din Regular';
+    src: url('src/fonts/DIN-Regular.eot');
+    src: url('src/fonts/DIN-Regular.eot') format('embedded-opentype'),
+         url('src/fonts/DIN-Regular.woff2') format('woff2'),
+         url('src/fonts/DIN-Regular.woff') format('woff'),
+         url('src/fonts/DIN-Regular.ttf') format('truetype'),
+         url('src/fonts/DIN-Regular.svg#DINRegular') format('svg');
+}
+
+@font-face {
+    font-family: 'Din Bold';
+    src: url('src/fonts/DIN-Black.eot');
+    src: url('src/fonts/DIN-Black.eot') format('embedded-opentype'),
+         url('src/fonts/DIN-Black.woff2') format('woff2'),
+         url('src/fonts/DIN-Black.woff') format('woff'),
+         url('src/fonts/DIN-Black.ttf') format('truetype'),
+         url('src/fonts/DIN-Black.svg#DINRegular') format('svg');
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;800&display=swap');
+
+//$font-regular: 'Din Regular';
+//$font-bold: 'Din Bold';
+$font: 'Barlow', sans-serif;
+$font-weight: 800;
+
+body {
+  //font-family: 'Din Regular';
+  font-family: $font;
+}
+
+.highlight, .title, .level {
+  //font-family: 'Din Bold';
+  font-family: $font;
+  font-weight: $font-weight;
+}

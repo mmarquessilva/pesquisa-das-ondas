@@ -1,0 +1,62 @@
+a {
+  text-decoration: none;
+
+  &:hover, &:active, &:focus {
+    color: $color--white;
+    text-decoration: none;
+  }
+}
+
+a.button, button, .button {
+  border: 1px solid transparent;
+  padding: 20px 0 20px;
+  line-height: normal;
+  text-align: center;
+  width: 200px;
+
+  &--black {
+    background-color: $color--black;
+    color: $color--white;
+  }
+
+  &--white {
+    background-color: $color--white;
+    color: $color--black;
+    border: 1px solid $color--black;
+  }
+
+
+  &--transparent {
+    @include font-size(1.6);
+    background-color: transparent;
+    border: 1px solid $color--white;
+    color: $color--white;
+    display: inline-block;
+    //font-family: 'Din Bold';
+    font-family: $font;
+    font-weight: $font-weight;
+
+    height: 50px;
+    padding: 9px 0 5px 0;
+    text-align: center;
+    width: 200px;
+  }
+
+  &--large {
+//    font-family: 'Din Bold';
+      font-family: $font;
+      font-weight: $font-weight;
+
+
+    a {
+      @include font-size(2);
+      color: $color--white;
+      margin: 0 auto;
+    }
+
+    i {
+      @include font-size(1.5);
+      margin-left: .5rem;
+    }
+  }
+}

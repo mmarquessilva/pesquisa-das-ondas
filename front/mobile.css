@@ -1,0 +1,434 @@
+/* Global */
+
+a.button,
+button,
+.button {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    width: 100%;
+}
+
+a.button--transparent,
+button--transparent,
+.button--transparent {
+    padding-top: 10px;
+}
+
+.gradient {
+    background: linear-gradient(270deg, rgba(179, 179, 179, 0.5) 0%, rgba(196, 196, 196, 0) 4%);
+    min-height: 0;
+}
+
+.gradient-sidebar {
+    background: linear-gradient(270deg, rgba(179, 179, 179, 0.5) 0%, rgba(196, 196, 196, 0) 40%);
+    min-height: 0;
+}
+
+
+/* Index */
+
+.highlight {
+    border-bottom: 1px solid #B3B3B3;
+    margin-bottom: 0;
+}
+
+.row_content {
+    min-height: 70vh;
+}
+
+.page-intro .title {
+    padding: 10px 15px 15px;
+}
+
+.page-intro .text {
+    padding: 0 15px;
+}
+
+.page-intro .sidebar {
+    margin-top: 35px;
+}
+
+.page-intro .sidebar-new {
+    margin-top: 35px;
+}
+
+.page-intro .sidebar-new .title {
+    font-size: 2.4rem;
+    line-height: 3.7rem;
+    display: flex;
+    padding: 20px 25px;
+    margin-bottom: 35px;
+}
+
+.page-intro .sidebar-mobile {
+    margin-top: 30px;
+}
+
+.page-intro .sidebar-mobile .title {
+    margin-bottom: 39px;
+}
+
+.page-intro .sidebar-mobile .title p {
+    height: 27px;
+}
+
+.page-intro .introduction {
+    max-width: 100%;
+    min-height: 262px;
+}
+
+.page-intro .form {
+    padding: 15px;
+}
+
+.page-intro .introduction p {
+    font-size: 1.42rem;
+}
+
+
+/* Quiz */
+
+.page-quiz-first .header {
+    height: 140px;
+}
+
+.page-quiz .header .explaining {
+    margin-top: -34px;
+    line-height: 15px;
+    margin-left: 71px;
+}
+
+.page-quiz.page-quiz-second .header .explaining {
+    margin-left: 59px;
+}
+
+.page-quiz.page-quiz-first .header .explaining {
+    margin-left: 71px;
+}
+
+.page-quiz .header .number {
+    /* margin-top: -6px; */
+    vertical-align: text-bottom;
+}
+
+.page-quiz-first .sidebar .content,
+.page-quiz-second .sidebar .content,
+.page-quiz-third .sidebar .content,
+.page-quiz-fourth .sidebar .content {
+    height: 167px;
+}
+
+.page-quiz .sidebar,
+.sidebar.page-quiz {
+    padding-bottom: 15px;
+}
+
+.page-quiz .header-previous .number {
+    display: block;
+    margin: 0;
+    margin-top: 15px;
+    padding: 0 !important;
+    padding-top: 10px !important;
+    text-align: center;
+    margin-bottom: -3px;
+}
+
+.page-quiz .header-previous,
+.page-quiz .header-next {
+    padding: 0;
+}
+
+.page-quiz .header-next .number,
+.page-quiz .header-previous .number {
+    font-size: 2.4rem;
+    min-height: 46px;
+    padding-top: 20px;
+    padding-left: 15px;
+}
+
+.page-quiz .header-next .number {
+    color: #B3B3B3;
+}
+
+.page-quiz .header-next {
+    height: 72px;
+}
+
+.page-quiz .content-next .title {
+    margin-bottom: 102px;
+    margin-top: 4px;
+}
+
+.page-quiz .content-next .title .text-hide {
+    height: 25px;
+}
+
+.page-quiz.sidebar {
+    margin-top: 77px;
+}
+
+.page-quiz .sidebar-next {
+    margin-top: 0;
+}
+
+.page-quiz-first .header,
+.page-quiz-second .header {
+    height: 140px;
+}
+
+.page-quiz-first .sidebar .content .text-hide,
+.page-quiz-second .sidebar .content .text-hide {
+    height: 27px;
+}
+
+.page-quiz .question {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.page-quiz .radio-toolbar {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.radio-toolbar {
+    margin: 0;
+}
+
+.radio-toolbar label {
+    margin-right: 3px;
+}
+
+
+/* Resultado */
+
+.result-content .highlight {
+    border: none;
+    font-size: 2.0rem;
+}
+
+.sidebar .title {
+    padding: 20px;
+}
+
+.result-header .title,
+.result-header .medium-value {
+    font-size: 2.3rem;
+    padding-top: 13px;
+}
+
+.result-header .medium-value {
+    margin: -6px 0 0 10px;
+}
+
+.result-header .medium {
+    font-size: 1rem;
+    line-height: 11px;
+    text-align: right;
+}
+
+.result-header.panel-result .col-md-4 h5 {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.result-header.panel-result .col-md-2 h5 {
+    width: 100%;
+    clear: both;
+}
+
+.result-footer .svg-logo {
+    min-height: 150px;
+}
+
+
+/* Modal */
+
+.modal {
+    max-width: 100% !important;
+    background: #fff;
+}
+
+.modal-header .title {
+    font-size: 1.8rem;
+}
+
+.modal-header .subtitle {
+    font-size: 1.4rem;
+}
+
+.modal-content {
+    padding: 40px 15px;
+}
+
+.modal .button--black {
+    padding-bottom: 15px;
+}
+
+
+/* Geral */
+
+.versao-mobile .page-quiz-hide {
+    display: none;
+}
+
+.versao-mobile .page-quiz-hide-init-decrease {
+    -ms-flex: 0 0 0%;
+    flex: 0 0 0%;
+    max-width: 0%;
+}
+
+.versao-mobile .page-quiz-hide-init .number,
+.versao-mobile .page-quiz-hide-init .title,
+.versao-mobile .page-quiz-hide-init .explaining,
+.versao-mobile .page-quiz-hide-init .question,
+.versao-mobile .page-quiz-hide-init .radio-toolbar {
+    display: none;
+}
+
+.versao-mobile .page-quiz-hide-elements .header .title,
+.versao-mobile .page-quiz-hide-elements .content .title div,
+.versao-mobile .page-quiz-hide-elements .explaining,
+.versao-mobile .page-quiz-hide-elements .question,
+.versao-mobile .page-quiz-hide-elements .radio-toolbar {
+    display: none;
+    transition: all 0.7s ease-in-out;
+}
+
+.versao-mobile .page-quiz-closed,
+.versao-mobile .page-quiz-next {
+    -ms-flex: 0 0 16.666667%;
+    flex: 0 0 16.666667%;
+    max-width: 16.666667%;
+}
+
+.versao-mobile .page-quiz-previous,
+.versao-mobile .page-quiz-next {
+    top: 20px;
+}
+
+.versao-mobile .page-quiz-closed {
+    background: linear-gradient(270deg, rgba(179, 179, 179, 0.5) 0%, rgba(196, 196, 196, 0) 40%);
+}
+
+.versao-mobile .page-quiz-closed .header,
+.versao-mobile .page-quiz-next .header {
+    padding: 0;
+}
+
+.versao-mobile .page-quiz-next .header {
+    height: 49px;
+}
+
+.versao-mobile .page-quiz-closed .header .number,
+.versao-mobile .page-quiz-next .header .number {
+    font-size: 2.4rem;
+    padding-top: 20px;
+    padding-left: 15px;
+}
+
+.versao-mobile .page-quiz-next .header .number {
+    color: #B3B3B3;
+    display: inline-block;
+    margin-top: -17px;
+}
+
+.versao-mobile .page-quiz-closed .header .title,
+.versao-mobile .page-quiz-next .header .title {
+    display: none;
+}
+
+.versao-mobile .page-quiz-closed .header .explaining,
+.versao-mobile .page-quiz-next .header .explaining {
+    display: none;
+}
+
+.versao-mobile .page-quiz-next .sidebar {
+    margin-top: 0;
+}
+
+.versao-mobile .page-quiz-closed .content .title div,
+.versao-mobile .page-quiz-next .content .title div {
+    font: 0/0 a;
+    background-color: transparent;
+    border: 0;
+    color: transparent;
+    height: 27px;
+    text-shadow: none;
+}
+
+.versao-mobile .page-quiz-closed .content .question,
+.versao-mobile .page-quiz-next .content .question {
+    display: none;
+}
+
+.versao-mobile .page-quiz-closed .content .radio-toolbar,
+.page-quiz-next .content .radio-toolbar {
+    display: none;
+}
+
+.versao-mobile .page-quiz-opened .sidebar span.title {
+    border-bottom-right-radius: 5rem;
+    max-height: 67px;
+    min-height: 67px;
+}
+
+.versao-mobile .page-quiz-opened .sidebar span.title div {
+    font-size: 1.6rem;
+}
+
+.versao-mobile .page-quiz-next .sidebar span.title {
+    border-top-left-radius: 5rem;
+}
+
+.versao-mobile .page-quiz-opened .header {
+    padding: 0px 30px 0 30px;
+    height: 135px;
+    position: relative;
+}
+
+.versao-mobile .page-quiz-opened .header .title {
+    line-height: 35px;
+    margin-left: 7px;
+}
+
+.versao-mobile .page-quiz-opened .header .number {
+    margin-right: initial;
+    vertical-align: bottom;
+}
+
+.versao-mobile .page-quiz-opened .header .title,
+.versao-mobile .page-quiz-opened .content .title div,
+.versao-mobile .page-quiz-opened .explaining,
+.versao-mobile .page-quiz-opened .question,
+.versao-mobile .page-quiz-opened .radio-toolbar {
+    transition: all 0.7s ease-in-out;
+}
+
+.versao-mobile .page-quiz-fourth .sidebar {
+    margin: 0;
+}
+
+.versao-mobile .page-quiz-fourth .sidebar .title {
+    font-size: 18px;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.versao-mobile .page-quiz-1,
+.versao-mobile .page-quiz-2,
+.versao-mobile .page-quiz-3 {
+    transition: all 1s ease-in-out;
+}
+
+.versao-mobile .result-container {
+    padding: 18px 45px 50px 45px;
+    width: 100%;
+}
+
+.versao-mobile .result-footer p {
+    line-height: 20px;
+    margin-top: 0px;
+}

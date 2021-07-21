@@ -1,0 +1,48 @@
+form {
+
+  color: $color--gray;
+  //font-family: 'Din Regular';
+  font-family: $font;
+
+  input, select, option {
+    @include font-size(1.7);
+    border: 1px solid $color--black;
+    // color: $color--gray;
+    margin-bottom: 20px;
+    padding: 12px 10px 12px;
+    width: 100%;
+    height:55px;
+    line-height: 30px;
+  }
+
+  button, a {
+    cursor: pointer !important;
+  }
+
+  select{
+    background: url('src/imgs/seta_dropdown.svg') no-repeat right transparent;
+    background-origin: content-box;
+    -webkit-appearance: none;
+    //color: #A4A4A4;
+    color: #000000;
+    //font-family: 'Din Regular';
+    font-family: $font;
+  }
+
+  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #B3B3B3;
+    opacity: 1; /* Firefox */
+  }
+
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #B3B3B3;
+  }
+
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: #B3B3B3;
+  }
+
+  .swap_for_select{ display: none; width: calc(100% - 90px);}
+  .swap_for_select_active {width: 80px; display: inline;}
+
+}

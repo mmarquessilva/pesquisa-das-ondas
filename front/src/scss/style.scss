@@ -1,0 +1,21 @@
+html {
+  font-size: 62.5%;
+}
+
+// Default
+@import 'mixin';
+@import 'font-family';
+@import 'color';
+@import 'size';
+@import 'button';
+@import 'form';
+@import 'radio-button';
+@import 'modal';
+
+// Pages
+@import 'page-intro';
+@import 'page-resultado';
+@import 'page-quiz';
+
+// Global
+@import 'global';  

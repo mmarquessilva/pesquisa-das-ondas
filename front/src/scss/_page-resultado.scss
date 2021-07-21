@@ -1,0 +1,131 @@
+.result {
+    &-container {
+        padding: 25px 45px 50px 45px;
+        width: calc(100% - 180px);
+        strong {
+            //font-family: 'Din Bold';
+            font-family: $font;
+            font-weight: $font-weight;
+        }
+        b {
+            //font-family: 'Din Bold';
+            font-family: $font;
+            font-weight: $font-weight;
+        }
+    }
+    &-header {
+        border-bottom: 1px solid #E5E5E5;
+        padding-bottom: 28px;
+        .title {
+            @include font-size(3.6);
+            color: $color--black;
+            //font-family: 'Din Bold';
+            font-family: $font;
+            font-weight: $font-weight;
+        }
+        .medium {
+            @include font-size(1.4);
+            align-self: center;
+            color: $color--black;
+            //font-family: 'Din Bold';
+            font-family: $font;
+            font-weight: $font-weight;
+            line-height: 1.4rem;
+            width: 50px;
+            &-value {
+                @include font-size(3.6);
+                //font-family: 'Din Bold';
+                font-family: $font;
+                font-weight: $font-weight;
+                margin: -10px 0 0 20px;
+            }
+        }
+    }
+    &-header.panel-result {
+        //font-family: 'Din Bold';
+        font-family: $font;
+        font-weight: $font-weight;
+        h4 {
+            margin-bottom: 10px;
+        }
+        .ruim {
+            color: #D62500;
+        }
+        .medio {
+            color: #D3E503;
+        }
+        .bom {
+            color: #00A455;
+        }
+        .big-number {
+            font-size: 50px;
+            margin: 0px;
+            line-height: 75px;
+            padding: 0px;
+            margin-bottom: -4px;
+            display: inline-block;
+        }
+    }
+    &-content {
+        margin-top: 40px;
+        .title {
+            @include font-size(1.6);
+            color: $color--black;
+            //font-family: 'Din Bold';
+            font-family: $font;
+            font-weight: $font-weight;
+            padding-bottom: 20px;
+        }
+        .newtitle {
+            font-size: 22px;
+            font-size: 2.2rem;
+            color: #000000;
+            //      font-family: "Din Bold";
+            font-family: $font;
+            font-weight: $font-weight;
+            padding-bottom: 20px;
+        }
+        .highlight {
+            @include font-size(2.4);
+            //font-family: 'Din Regular';
+            font-family: $font;
+            font-weight: 300;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+        .newhighlight {
+            font-size: 18px;
+            font-size: 1.8rem;
+            //font-family: "Din Regular";
+            font-family: $font;
+            padding: 0;
+            margin-bottom: 20px;
+            line-height: 2.8rem;
+        }
+        p {
+            @include font-size(2.4);
+        }
+    }
+    &-footer {
+        border-top: 1px solid #E5E5E5;
+        margin-top: 70px;
+        padding: 10px 0 40px;
+        .svg-logo {
+            display: block;
+            float: left;
+            margin-right: 20px;
+        }
+        p {
+            line-height: 18px;
+            margin-top: 10px;
+            margin-bottom: 0px;
+        }
+    }
+}
+
+.col-btn-restart {
+    position: fixed;
+    right: 0px;
+    max-width: 180px;
+    width: 100%;
+}

@@ -1,0 +1,58 @@
+$color--white: #FFFFFF;
+$color--black: #000000;
+$color--gray: #B3B3B3;
+
+$color--blue: #0050CC;
+$color--green: #03D1AA;
+
+$color--orange: #FF4C00;
+$color--red: #FF2C00;
+
+$gradient: linear-gradient(270deg, rgba(179, 179, 179, 0.5) 0%, rgba(196, 196, 196, 0) 50%);
+
+.background {
+  &--white {
+    background-color: $color--white;
+    color: $color--white;
+  }
+  &--orange {
+    background-color: $color--orange;
+    color: $color--white;
+  }
+  &--orange-gradient {
+    background: rgb(255,76,0);
+    background: linear-gradient(90deg, rgba(255,76,0,1) calc(100% - 240px), rgba(122,37,1,1) 100%);
+    color: $color--white;
+  }
+  &--black {
+    background-color: $color--black;
+    color: $color--white;
+  }
+  &--red {
+    background-color: $color--red;
+    color: $color--white;
+  }
+  &--red-gradient {
+    background: rgb(255,44,0);
+    background: linear-gradient(90deg, rgba(255,44,0,1) 50%, rgba(223,39,0,1) 100%);
+    color: $color--white;
+  }
+  &--blue {
+    background-color: $color--blue;
+    color: $color--white;
+  }
+  &--blue-gradient {
+    background: rgb(0,80,204);
+    background: linear-gradient(90deg, rgba(0,80,204,1) 50%, rgba(1,73,185,1) 100%);
+    color: $color--white;
+  }
+  &--green {
+    background-color: $color--green;
+    color: $color--white;
+  }
+  &--green-gradient {
+    background: rgb(3,209,170);
+    background: linear-gradient(90deg, rgba(3,209,170,1) 50%, rgba(3,181,147,1) 100%);
+    color: $color--white;
+  }
+}

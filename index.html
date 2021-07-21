@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="pt-br" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ondas do Branding</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="front/src/favicon.ico" />
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
+  <!-- Animate.css -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css">
+  <!-- Style Default -->
+  <link rel="stylesheet" href="front/style.css?vs=1">
+  <link rel="stylesheet" href="front/mobile.css?vs=1" media="only screen and (max-width: 1024px)">
+</head>
+<body>
+  <div class="loading"></div>
+  <div class="main"></div>
+
+  <!-- jQuery and JS bundle w/ Popper.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous"></script>
+  <script src="front/src/js/wow.min.js"></script>
+  <script>new WOW().init();</script>
+  <script type="text/javascript">
+
+    $(document).ready(function() {
+      var w = $( window ).width();
+      if(w > 1024){
+        // desktop
+        QuizDesktop.init();
+      }else{
+        QuizMobile.init()
+      }
+
+
+    });
+
+    var QuizDesktop = {
+    	init: function(){
+        QuizDesktop.toggleLoading();
+        QuizDesktop.getInit();
+      },
+      get: function(endpoint, callback){
+        var _callback = callback;
+        $.ajax({ url: endpoint, cache: false }).done(_callback);
+      },
+      render: function(html){
+        $('.main').append(html);
+      },
+      render_after: function(html){
+        $(html).insertAfter('.col-sidebar');
+      },
+      send: function(){
+        var form = $('#formRegister .form_field').serialize();
+        var opt = $('.radio-toolbar input').serialize();
+        var obj = form+'&'+opt+'&key='+Math.random();
+        $.post( "API/desktop.result.php", obj, function( data ) {
+          $('.subhighlight').hide();
+          $('.col.page-quiz').hide();
+          $('.col-action').hide();
+          QuizDesktop.render_after(data);
+          $('.col-btn-restart').click(function(e){
+            //e.preventDefault();
+            //param = window.location.search;
+            //window.location.href=param+'&restart=true';
+          });
+        });
+      },
+      toggleLoading: function(){
+        $('.loading').toggle();
+      },
+      addActionButton: function(callback){
+        var _callback = callback;
+        $('.col-action').on('click',_callback);
+      },
+      activeSendResultButton: function(){
+        $('#txt_nome').keypress(function(event){
+          if($('#btn-send-result').hasClass('d-none')){
+            $('#btn-send-result').removeClass('d-none');
+          }
+        });
+      },
+      addSendResultButton: function(){
+        var SPMaskBehavior = function (val) {
+          return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+        },
+        spOptions = {
+          onKeyPress: function(val, e, field, options) {
+              field.mask(SPMaskBehavior.apply({}, arguments), options);
+            }
+        };
+
+        $('.celphones').mask(SPMaskBehavior, spOptions);
+
+        $('#btn-send-result').click(function(e){
+          e.preventDefault();
+          var validation = false;
+          $('#formRegister .form_field').each(function(){
+            $(this).removeClass('error');
+            r = $(this).attr('required');
+            v = $(this).val();
+            n = $(this).attr('name');
+            t = $(this).attr('type');
+            if(r == 'required'){
+              if(t == "checkbox"){
+                if(!$(this).is(":checked")){
+                  validation = true;
+                  $(this).addClass('error');
+                }
+              }else{
+                if(v.length <= 0){
+                  validation = true;
+                  $(this).addClass('error');
+                }else{
+                  if(n == 'txt_email'){
+                    if(!isEmail(v)){
+                      validation = true;
+                      $(this).addClass('error');
+                    }
+                  }
+                }
+              }
+            }
+          });
+
+          console.log(validation);
+//          validation = false;
+          if(!validation){
+            $('#btn-send-result').hide();
+            $('.col-action').show();
+            QuizDesktop.getStep1();
+            //$('.col-intro').show();
+            //QuizDesktop.send();
+          }
+        });
+      },
+      removeActionButton: function(){
+        $('.col-action').off('click');
+      },
+      getInit: function(){
+        param = window.location.search;
+        QuizDesktop.get('API/desktop.main.php'+param,function(html){
+          QuizDesktop.render(html);
+          QuizDesktop.toggleLoading();
+//          QuizDesktop.activeSendResultButton();
+          QuizDesktop.addSendResultButton();
+          QuizDesktop.addActionButton(function(e){
+            e.preventDefault();
+            QuizDesktop.getStep1();
+          });
+          swap_text();
+        });
+      },
+      getStep1: function(){
+        $('.subhighlight').show();
+        $('.page-intro').hide();
+        $('.col-sidebar').find('.sidebar').addClass('page-quiz');
+        $('.col-sidebar').removeClass('col-sm-3');
+        $('.col-sidebar').addClass('col-md-2');
+        $('.col-sidebar').find('.border-radius-bottom').removeClass('border-radius-bottom');
+        $('.col-action').addClass('hide');
+        bt = $('.col-action a').html();
+        bt = bt.replace('COMEÇAR','RESULTADO');
+        $('.col-action a').html(bt);
+        QuizDesktop.toggleLoading();
+        QuizDesktop.get('API/desktop.step1.php',function(html){
+          QuizDesktop.render_after(html);
+          QuizDesktop.toggleLoading();
+          QuizDesktop.removeActionButton();
+          $('.radio-toolbar input').change(function(event) {
+            var t = 0;
+            var next = false;
+            $(this).closest('.page-quiz').find('.radio-toolbar').each(function(key, data){
+                a = $(data).find('input').is(":checked");
+                if(a){
+                  t++;
+                }
+
+                if(t == 3){
+                  n = $(this).closest('.page-quiz').next('.page-quiz').addClass('opacity100');
+                  if($(this).closest('.page-quiz').hasClass('page-quiz-third')){
+                    $('.col-action').addClass('relative');
+                    $('.col-action').removeClass('hide');
+                  }
+                  t = 0;
+                }
+            });
+          });
+
+          QuizDesktop.addActionButton(function(e){
+            e.preventDefault();
+            $(this).prop("disabled",true);
+            QuizDesktop.send();
+          });
+        });
+      },
+    }
+
+    var QuizMobile = {
+    	init: function(){
+        $('body').addClass('versao-mobile')
+        $( document ).scrollTop( 0 );
+        QuizMobile.toggleLoading();
+        QuizMobile.getInit();
+      },
+      get: function(endpoint, callback){
+        var _callback = callback;
+        $.ajax({ url: endpoint, cache: false }).done(_callback);
+      },
+      render: function(html){
+        $('.main').append(html);
+      },
+      render_after: function(html){
+        $(html).insertAfter('.col-sidebar');
+      },
+      render_content: function(html){
+        $('.row_content').append(html);
+      },
+      send: function(){
+        var form = $('#formRegister .form_field').serialize();
+        var opt = $('.radio-toolbar input').serialize();
+        var obj = form+'&'+opt+'&key='+Math.random();
+        $.post( "API/mobile.result.php", obj, function( data ) {
+          $('.page-quiz-1').hide();
+          $('.page-quiz-2').hide();
+          $('.page-quiz-3').hide();
+          $('.col-action-mobile').hide();
+          $('#btn-send-result').prop('disabled', false);
+          QuizMobile.render_content(data);
+          $( document ).scrollTop( 0 );
+          $('.number-previos').html('03');
+        }).fail(function() {
+          $('#btn-send-result').prop('disabled', false);
+        });
+      },
+      toggleLoading: function(){
+        $('.loading').toggle();
+      },
+      addActionButton: function(callback){
+        var _callback = callback;
+        $('.col-action-mobile').on('click',_callback);
+      },
+      addSendResultButton: function(){
+        var SPMaskBehavior = function (val) {
+          return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+        },
+        spOptions = {
+          onKeyPress: function(val, e, field, options) {
+              field.mask(SPMaskBehavior.apply({}, arguments), options);
+            }
+        };
+
+        $('.celphones').mask(SPMaskBehavior, spOptions);
+
+        $('#btn-send-result').click(function(e){
+          e.preventDefault();
+          var validation = false;
+          $('#formRegister .form_field').each(function(){
+            $(this).removeClass('error');
+            r = $(this).attr('required');
+            v = $(this).val();
+            n = $(this).attr('name');
+            t = $(this).attr('type');
+            if(r == 'required'){
+              if(t == "checkbox"){
+                if(!$(this).is(":checked")){
+                  validation = true;
+                  $(this).addClass('error');
+                }
+              }else{
+                if(v.length <= 0){
+                  validation = true;
+                  $(this).addClass('error');
+                }else{
+                  if(n == 'txt_email'){
+                    if(!isEmail(v)){
+                      validation = true;
+                      $(this).addClass('error');
+                    }
+                  }
+                }
+              }
+            }
+          });
+          console.log(validation);
+          if(!validation){
+            $('#btn-send-result').prop('disabled', true);
+            //QuizMobile.send();
+            $('#btn-send-result').hide();
+            $('.col-action-mobile').show();
+            QuizMobile.getStep1();
+          }
+        });
+      },
+      removeActionButton: function(){
+        $('.col-action-mobile').off('click');
+      },
+      getInit: function(){
+        param = window.location.search;
+        QuizMobile.get('API/mobile.main.php'+param,function(html){
+          QuizMobile.render(html);
+          QuizMobile.toggleLoading();
+          QuizMobile.addSendResultButton();
+          QuizMobile.addActionButton(function(e){
+            e.preventDefault();
+            QuizMobile.getStep1();
+          });
+          swap_text();
+        });
+      },
+      getStep1: function(){
+        $('.page-intro').hide();
+        QuizMobile.toggleLoading();
+        QuizMobile.get('API/mobile.step1.php',function(html){
+          $( document ).scrollTop( 0 );
+          QuizMobile.render_content(html);
+          QuizMobile.toggleLoading();
+          QuizMobile.removeActionButton();
+          $('.col-action-mobile').addClass('hide');
+          bt = $('.col-action-mobile a').html();
+          bt = bt.replace('COMEÇAR','PRÓXIMO');
+          $('.col-action-mobile a').html(bt);
+
+          $('.page-quiz-1 input').change(function(event){
+            var t = 0;
+            var next = false;
+            $(this).closest('.page-quiz').find('.radio-toolbar').each(function(key, data){
+
+              a = $(data).find('input').is(":checked");
+              if(a){
+                t++;
+              }
+
+              if(t == 3){
+                $('.col-action-mobile').removeClass('hide');
+                var h = $(document).height();
+                $( document ).scrollTop( h );
+                t = 0;
+              }
+            });
+          });
+
+          QuizMobile.addActionButton(function(e){
+            e.preventDefault();
+            QuizMobile.getStep2();
+          });
+        });
+      },
+      getStep2: function(){
+        $( document ).scrollTop( 0 );
+        $('.number-previos').html('01');
+        $('.page-quiz-1').removeClass('page-quiz-opened').addClass('page-quiz-hide-init').addClass('page-quiz-hide-init-decrease');
+        $('.page-quiz-2').addClass('page-quiz-hide-elements');
+        $('.page-quiz-2').removeClass('page-quiz-next').addClass('page-quiz-opened');
+        setTimeout(function(){
+          $('.page-quiz-2').removeClass('page-quiz-hide-elements');
+          $('.page-quiz-3').removeClass('page-quiz-hide').addClass('page-quiz-next');
+        }, 700);
+        QuizMobile.removeActionButton();
+
+        $('.col-action-mobile').addClass('hide');
+
+        $('.page-quiz-2 input').change(function(event){
+          var t = 0;
+          var next = false;
+          $(this).closest('.page-quiz').find('.radio-toolbar').each(function(key, data){
+
+            a = $(data).find('input').is(":checked");
+            if(a){
+              t++;
+            }
+
+            if(t == 3){
+              $('.col-action-mobile').removeClass('hide');
+              var h = $(document).height();
+              $( document ).scrollTop( h );
+              t = 0;
+            }
+          });
+        });
+
+        QuizMobile.addActionButton(function(e){
+          e.preventDefault();
+          QuizMobile.getStep3();
+        });
+      },
+      getStep3: function(){
+        $( document ).scrollTop( 0 );
+        $('.number-previos').html('02');
+        $('.page-quiz-2').removeClass('page-quiz-opened').addClass('page-quiz-hide-init').addClass('page-quiz-hide-init-decrease');
+        $('.page-quiz-3').addClass('page-quiz-hide-elements');
+        $('.page-quiz-3').removeClass('page-quiz-next').addClass('page-quiz-opened');
+        setTimeout(function(){
+          $('.page-quiz-3').removeClass('page-quiz-hide-elements');
+        }, 700);
+        QuizMobile.removeActionButton();
+
+        $('.col-action-mobile').addClass('hide');
+        bt = $('.col-action-mobile a').html();
+        bt = bt.replace('PRÓXIMO','RESULTADO');
+        $('.col-action-mobile a').html(bt);
+
+
+        $('.page-quiz-3 input').change(function(event){
+          var t = 0;
+          var next = false;
+          $(this).closest('.page-quiz').find('.radio-toolbar').each(function(key, data){
+
+            a = $(data).find('input').is(":checked");
+            if(a){
+              t++;
+            }
+
+            if(t == 3){
+              $('.col-action-mobile').removeClass('hide');
+              var h = $(document).height();
+              $( document ).scrollTop( h );
+              t = 0;
+            }
+          });
+        });
+
+        QuizMobile.addActionButton(function(e){
+          e.preventDefault();
+          $(this).prop("disabled",true);
+          QuizMobile.send();
+          //$('#modalRegister').modal('show');
+        });
+      },
+    }
+
+    function isEmail(email) {
+      var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+      return regex.test(email);
+    }
+
+    function swap_text(){
+      $('.swap_for_text').change(function(e){
+          var opt = $(this).val();
+          opt = opt.toUpperCase();
+          if(opt == "OUTRO" ||  opt == "OUTROS"){
+            $(this).parent().find('.swap_for_select').show();
+            $(this).parent().find('.swap_for_select').focus();
+            $(this).addClass('swap_for_select_active');
+
+          }else{
+            $(this).parent().find('.swap_for_select').hide();
+            $(this).removeClass('swap_for_select_active');
+          }
+      });
+    }
+
+  </script>
+</body>
+</html>
